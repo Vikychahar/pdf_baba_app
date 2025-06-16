@@ -1,23 +1,17 @@
-/*
- * Custom Properties (CSS Variables)
- */
+/* Custom Properties (CSS Variables) */
 :root {
     --color-primary: #00BFFF;
     --color-primary-dark: #009ACD;
     --color-success: #22C55E;
     --color-warning: #F97316;
-    
     --color-light-bg: #F7F7F7;
     --color-light-card: #FFFFFF;
     --color-light-text: #1A1A1A;
     --color-light-text-secondary: #666666;
     --color-border-light: #EAEAEA;
-
     --font-sans: 'Inter', sans-serif;
     --font-heading: 'Poppins', sans-serif;
 }
-
-/* Dark Mode Color Definitions */
 .dark {
     --color-light-bg: #121212;
     --color-light-card: #1E1E1E;
@@ -27,75 +21,41 @@
 }
 
 /* Base and Utility Styles */
-body {
-    background-color: var(--color-light-bg);
-    color: var(--color-light-text);
-    font-family: var(--font-sans);
-}
+body { background-color: var(--color-light-bg); color: var(--color-light-text); font-family: var(--font-sans); }
 .font-sans { font-family: var(--font-sans); }
 .font-heading { font-family: var(--font-heading); }
-.bg-light-bg { background-color: var(--color-light-bg); }
-.bg-light-card { background-color: var(--color-light-card); }
-.text-light-text { color: var(--color-light-text); }
-.text-light-text-secondary { color: var(--color-light-text-secondary); }
-.border-border-light { border-color: var(--color-border-light); }
+.bg-light-bg, .dark .dark\:bg-light-bg { background-color: var(--color-light-bg); }
+.bg-light-card, .dark .dark\:bg-light-card { background-color: var(--color-light-card); }
+.text-light-text, .dark .dark\:text-light-text { color: var(--color-light-text); }
+.text-light-text-secondary, .dark .dark\:text-light-text-secondary { color: var(--color-light-text-secondary); }
+.border-border-light, .dark .dark\:border-border-light { border-color: var(--color-border-light); }
 .text-primary { color: var(--color-primary); }
 .bg-primary { background-color: var(--color-primary); }
 .hover\:bg-primary-dark:hover { background-color: var(--color-primary-dark); }
-.ring-primary:focus { --tw-ring-color: var(--color-primary); }
+.focus\:ring-primary:focus { --tw-ring-color: var(--color-primary); }
 .bg-success { background-color: var(--color-success); }
+.bg-light-card\/80 { background-color: rgba(255, 255, 255, 0.8); }
+.dark .dark\:bg-dark-card\/80 { background-color: rgba(30, 30, 30, 0.8); }
 .dark .dark\:bg-gray-700 { background-color: #374151; }
-.dark .dark\:bg-dark-card { background-color: var(--color-light-card); }
-.dark .dark\:border-border-dark { border-color: var(--color-border-light); }
 .dark .dark\:hover\:bg-gray-700:hover { background-color: #374151; }
+.bg-opacity-10 { background-color: rgba(0, 191, 255, 0.1); }
+.backdrop-blur-sm { --tw-backdrop-blur: blur(4px); backdrop-filter: var(--tw-backdrop-filter, var(--tw-backdrop-blur, 0)); }
 
 /* Header Nav Link */
-.nav-link {
-    color: var(--color-light-text-secondary);
-    font-weight: 500;
-    transition: color 0.2s;
-    position: relative;
-    padding-bottom: 4px;
-}
+.nav-link { color: var(--color-light-text-secondary); font-weight: 500; transition: color 0.2s; position: relative; padding-bottom: 4px; }
 .nav-link:hover { color: var(--color-primary); }
-.nav-link.active {
-    color: var(--color-primary);
-    font-weight: 600;
-}
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-primary);
-}
+.nav-link.active { color: var(--color-primary); font-weight: 600; }
+.nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: var(--color-primary); }
 
 /* Footer Social Link */
-.social-link {
-    color: var(--color-light-text-secondary);
-    font-size: 1.25rem;
-    transition: color 0.2s;
-}
+.social-link { color: var(--color-light-text-secondary); font-size: 1.25rem; transition: color 0.2s; }
 .social-link:hover { color: var(--color-primary); }
 
-/* Contact Form Input */
-.contact-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--color-border-light);
-    border-radius: 0.5rem;
-    background-color: var(--color-light-bg);
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-.contact-input:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
-}
+/* Generic Input for Modals */
+.tool-input { width: 100%; padding: 0.5rem; border: 1px solid var(--color-border-light); border-radius: 0.375rem; background-color: var(--color-light-card); }
+.tool-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2); }
 
-/* Tool Card and Modal styles (from previous corrected version) */
+/* Tool Card and Other Styles */
 .tool-card:hover { transform: translateY(-5px); }
 #initial-drop-zone { border: 3px dashed #d1d5db; }
 .dark #initial-drop-zone { border-color: #4b5563; }
@@ -103,3 +63,5 @@ body {
 #initial-drop-zone button { background-color: var(--color-primary); color: white; padding: 1rem 2rem; border-radius: 9999px; }
 #initial-drop-zone button:hover { background-color: var(--color-primary-dark); }
 .file-preview-item { border: 1px solid var(--color-border-light); background-color: var(--color-light-card); }
+.prose.dark\:prose-dark { color: var(--color-light-text); }
+.prose.dark\:prose-dark h2, .prose.dark\:prose-dark h3 { color: var(--color-light-text); }
