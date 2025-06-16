@@ -59,12 +59,12 @@
     <!-- Footer -->
     <footer class="bg-light-card dark:bg-dark-card border-t border-border-light dark:border-border-dark mt-16">
         <div class="container mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                 <div class="mb-6 md:mb-0">
                     <h3 class="text-xl font-heading font-bold">PDF Baba</h3>
                     <p class="text-light-text-secondary">Your free suite of online tools.</p>
                 </div>
-                <div class="flex gap-x-6 text-light-text-secondary">
+                <div class="flex flex-col md:flex-row items-center gap-y-4 md:gap-x-6 text-light-text-secondary">
                     <a href="privacy.html" class="hover:text-primary transition-colors">Privacy Policy</a>
                     <a href="terms.html" class="hover:text-primary transition-colors">Terms & Conditions</a>
                     <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
@@ -84,17 +84,14 @@
     <!-- Tool Modal Workspace -->
     <div id="tool-modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-filter backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
         <div id="modal-content" class="bg-light-bg w-full max-w-5xl h-[90vh] rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-transform duration-300">
-            <!-- Modal Header -->
             <div class="flex-shrink-0 flex justify-between items-center p-4 border-b border-border-light dark:border-border-dark">
                 <div class="flex items-center gap-3"><div id="modal-icon-container" class="w-10 h-10 bg-primary bg-opacity-10 text-primary rounded-lg flex items-center justify-center"><i id="modal-icon" class="text-xl"></i></div><h2 id="modal-title" class="text-xl font-bold font-heading">Tool Title</h2></div>
                 <button id="modal-close-btn" class="text-2xl w-10 h-10 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">×</button>
             </div>
-            <!-- Modal Body -->
             <div id="modal-body" class="flex-grow p-6 overflow-y-auto flex flex-col items-center justify-center"></div>
         </div>
     </div>
     
-    <!-- Scripts -->
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
