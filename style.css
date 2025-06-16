@@ -1,0 +1,97 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for a polished look */
+body::-webkit-scrollbar, #modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-track, #modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+body::-webkit-scrollbar-thumb, #modal-body::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+.dark body::-webkit-scrollbar-thumb, .dark #modal-body::-webkit-scrollbar-thumb {
+    background-color: #4b4b4b;
+}
+
+/* Tool Card Styling */
+.tool-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.dark .tool-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Main File Drop Zone in Modal */
+#initial-drop-zone {
+    width: 100%;
+    max-width: 500px;
+    border: 3px dashed #d1d5db; /* gray-300 */
+    transition: all 0.2s ease-in-out;
+}
+.dark #initial-drop-zone {
+    border-color: #4b5563; /* gray-600 */
+}
+#initial-drop-zone.dragover {
+    border-color: #00BFFF; /* primary */
+    background-color: rgba(0, 191, 255, 0.05);
+}
+#initial-drop-zone button {
+    background-color: #00BFFF;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+#initial-drop-zone button:hover {
+    background-color: #009ACD; /* primary-dark */
+}
+
+/* File Preview Styling */
+.file-preview-item {
+    border: 1px solid #EAEAEA; /* border-light */
+    background: white;
+    transition: box-shadow 0.2s;
+}
+.dark .file-preview-item {
+    border-color: #333333; /* border-dark */
+    background-color: #1E1E1E; /* dark-card */
+}
+.file-preview-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Draggable Thumbnail for Organize PDF */
+.page-thumbnail {
+    cursor: grab;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+.page-thumbnail.dragging {
+    opacity: 0.5;
+    border-color: #00BFFF;
+    transform: scale(1.05);
+}
+.page-thumbnail .delete-page {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.page-thumbnail:hover .delete-page {
+    opacity: 1;
+}
+
+/* Primary Action Button in Modal Footer */
+#tool-action-btn {
+    font-size: 1.125rem;
+    padding: 0.8rem 2rem;
+}

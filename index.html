@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Baba – The All-in-One Document Solution</title>
+
+    <!-- Favicon (Embedded SVG) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%2300BFFF;stop-opacity:1' /><stop offset='100%' style='stop-color:%231E90FF;stop-opacity:1' /></linearGradient></defs><path fill='url(%23grad)' d='M85,30 L85,70 Q85,85 70,85 L30,85 Q15,85 15,70 L15,30 Q15,15 30,15 L70,15 Q85,15 85,30 Z' /><path fill='white' d='M30,40 L70,40 L70,50 L30,50 Z M30,60 L60,60 L60,70 L30,70 Z' transform='rotate(10 50 50)'/></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Client-Side Libraries -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';</script>
+
+    <!-- Custom CSS & JS -->
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'primary': '#00BFFF',
+              'primary-dark': '#009ACD',
+              'success': '#22C55E',
+              'warning': '#F97316',
+              'light-bg': '#F7F7F7',
+              'dark-bg': '#121212',
+              'light-card': '#FFFFFF',
+              'dark-card': '#1E1E1E',
+              'light-text': '#1A1A1A',
+              'dark-text': '#E5E5E5',
+              'light-text-secondary': '#666666',
+              'dark-text-secondary': '#A0A0A0',
+              'border-light': '#EAEAEA',
+              'border-dark': '#333333',
+            },
+            fontFamily: {
+              'sans': ['Inter', 'sans-serif'],
+              'heading': ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text font-sans antialiased transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="bg-light-card/80 dark:bg-dark-card/80 backdrop-blur-sm sticky top-0 z-40 border-b border-border-light dark:border-border-dark">
+        <nav class="container mx-auto px-4 lg:px-6 py-3 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3">
+                <i class="fas fa-cogs text-3xl text-primary"></i>
+                <h1 class="text-2xl font-heading font-bold text-light-text dark:text-dark-text">PDF Baba</h1>
+            </a>
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <input id="search-bar" type="text" placeholder="Search for tools..." class="w-40 md:w-64 px-4 py-2 rounded-full bg-light-bg dark:bg-dark-bg border border-border-light dark:border-border-dark focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                    <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-light-text-secondary dark:text-dark-text-secondary"></i>
+                </div>
+                <button id="dark-mode-toggle" class="w-10 h-10 flex justify-center items-center rounded-full bg-light-bg dark:bg-gray-700 text-lg">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content: Tool Hub -->
+    <main class="container mx-auto px-4 lg:px-6 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-3">The All-in-One Document Solution</h1>
+            <p class="text-lg text-light-text-secondary dark:text-dark-text-secondary">A free, fast, and easy-to-use suite of tools to handle all your file needs.</p>
+        </div>
+        
+        <!-- Tools will be rendered here in sections -->
+        <div id="tools-container" class="space-y-16"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 bg-light-bg dark:bg-dark-bg mt-12 border-t border-border-light dark:border-border-dark">
+        <p class="text-light-text-secondary dark:text-dark-text-secondary">© 2024 PDF Baba. Created with passion.</p>
+    </footer>
+
+    <!-- Tool Modal Workspace -->
+    <div id="tool-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modal-content" class="bg-light-bg dark:bg-dark-bg w-full max-w-4xl h-[90vh] rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="flex-shrink-0 flex justify-between items-center p-4 border-b border-border-light dark:border-border-dark">
+                <div class="flex items-center gap-3">
+                    <div id="modal-icon-container" class="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
+                        <i id="modal-icon" class="text-xl"></i>
+                    </div>
+                    <h2 id="modal-title" class="text-xl font-bold font-heading">Tool Title</h2>
+                </div>
+                <button id="modal-close-btn" class="text-2xl w-10 h-10 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">×</button>
+            </div>
+            <!-- Modal Body (The Workspace) -->
+            <div id="modal-body" class="flex-grow p-6 overflow-y-auto flex flex-col items-center justify-center">
+                <!-- Tool-specific UI will be injected here. Starts with a dropzone. -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
