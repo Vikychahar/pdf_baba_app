@@ -1,25 +1,61 @@
+/*
+ *  THE FIX: Defining custom properties (CSS Variables)
+ *  This makes our custom theme work with the pre-compiled Tailwind CSS.
+ */
+:root {
+    /* Define Colors */
+    --color-primary: #00BFFF;
+    --color-primary-dark: #009ACD;
+    --color-success: #22C55E;
+    --color-warning: #F97316;
+    
+    --color-light-bg: #F7F7F7;
+    --color-light-card: #FFFFFF;
+    --color-light-text: #1A1A1A;
+    --color-light-text-secondary: #666666;
+    --color-border-light: #EAEAEA;
+
+    /* Define Fonts */
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+}
+
+/* Dark Mode Color Definitions */
+.dark {
+    --color-light-bg: #121212;      /* dark-bg */
+    --color-light-card: #1E1E1E;    /* dark-card */
+    --color-light-text: #E5E5E5;    /* dark-text */
+    --color-light-text-secondary: #A0A0A0; /* dark-text-secondary */
+    --color-border-light: #333333;  /* border-dark */
+}
+
+/* Applying the custom properties to the body and elements */
+body {
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+    font-family: var(--font-sans);
+}
+
+.font-sans { font-family: var(--font-sans); }
+.font-heading { font-family: var(--font-heading); }
+
+.bg-light-bg { background-color: var(--color-light-bg); }
+.bg-light-card { background-color: var(--color-light-card); }
+.text-light-text { color: var(--color-light-text); }
+.text-light-text-secondary { color: var(--color-light-text-secondary); }
+.border-border-light { border-color: var(--color-border-light); }
+
+.text-primary { color: var(--color-primary); }
+.bg-primary { background-color: var(--color-primary); }
+.ring-primary:focus { --tw-ring-color: var(--color-primary); } /* For focus rings */
+.bg-success { background-color: var(--color-success); }
+
+
+/* Custom Styles (Unchanged from before, but now they will work) */
 html {
     scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for a polished look */
-body::-webkit-scrollbar, #modal-body::-webkit-scrollbar {
-    width: 8px;
-}
-body::-webkit-scrollbar-track, #modal-body::-webkit-scrollbar-track {
-    background: transparent;
-}
-body::-webkit-scrollbar-thumb, #modal-body::-webkit-scrollbar-thumb {
-    background-color: #c1c1c1;
-    border-radius: 10px;
-    border: 2px solid transparent;
-    background-clip: content-box;
-}
-.dark body::-webkit-scrollbar-thumb, .dark #modal-body::-webkit-scrollbar-thumb {
-    background-color: #4b4b4b;
-}
-
-/* Tool Card Styling */
 .tool-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -31,67 +67,30 @@ body::-webkit-scrollbar-thumb, #modal-body::-webkit-scrollbar-thumb {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Main File Drop Zone in Modal */
 #initial-drop-zone {
-    width: 100%;
-    max-width: 500px;
-    border: 3px dashed #d1d5db; /* gray-300 */
+    border: 3px dashed #d1d5db;
     transition: all 0.2s ease-in-out;
 }
 .dark #initial-drop-zone {
-    border-color: #4b5563; /* gray-600 */
+    border-color: #4b5563;
 }
 #initial-drop-zone.dragover {
-    border-color: #00BFFF; /* primary */
+    border-color: var(--color-primary);
     background-color: rgba(0, 191, 255, 0.05);
 }
-#initial-drop-zone button {
-    background-color: #00BFFF;
+#initial-drop-zone #choose-file-btn {
+    background-color: var(--color-primary);
     color: white;
     font-weight: bold;
     padding: 1rem 2rem;
     border-radius: 9999px;
     transition: background-color 0.2s;
 }
-#initial-drop-zone button:hover {
-    background-color: #009ACD; /* primary-dark */
+#initial-drop-zone #choose-file-btn:hover {
+    background-color: var(--color-primary-dark);
 }
 
-/* File Preview Styling */
 .file-preview-item {
-    border: 1px solid #EAEAEA; /* border-light */
-    background: white;
-    transition: box-shadow 0.2s;
-}
-.dark .file-preview-item {
-    border-color: #333333; /* border-dark */
-    background-color: #1E1E1E; /* dark-card */
-}
-.file-preview-item:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-}
-
-/* Draggable Thumbnail for Organize PDF */
-.page-thumbnail {
-    cursor: grab;
-    border: 2px solid transparent;
-    transition: all 0.2s ease-in-out;
-}
-.page-thumbnail.dragging {
-    opacity: 0.5;
-    border-color: #00BFFF;
-    transform: scale(1.05);
-}
-.page-thumbnail .delete-page {
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-.page-thumbnail:hover .delete-page {
-    opacity: 1;
-}
-
-/* Primary Action Button in Modal Footer */
-#tool-action-btn {
-    font-size: 1.125rem;
-    padding: 0.8rem 2rem;
+    border: 1px solid var(--color-border-light);
+    background-color: var(--color-light-card);
 }
